@@ -11,28 +11,27 @@ enum class DownloadStatus {
     OK, IDLE, NOT_INITIALISED, FAILED_OR_EMPTY, PERMISSIONS_ERROR, ERROR
 }
 
-class GetRawData (private val listener: OnDownloadComplete): AsyncTask<String, Void, String> (){
+class GetRawData(private val listener: OnDownloadComplete) : AsyncTask<String, Void, String>(){
     private val TAG = "GetRawData"
     private var downloadStatus = DownloadStatus.IDLE
 
-    //private var listener: MainActivity? = null
     interface OnDownloadComplete {
-        fun onDownloadComplete(data:String, status: DownloadStatus)
+        fun onDownloadComplete(data: String, status: DownloadStatus)
     }
 
-    fun setDownloadCompleteListener(callbackObject: MainActivity) {
-        listener = callbackObject
-    }
+//    fun setDownloadCompleteListener(callbackObject: MainActivity) {
+//        listener = callbackObject
+//    }
 
-    override fun onProgressUpdate(vararg values: Void?) {
-        super.onProgressUpdate(*values)
-        Log.d(TAG, "onProgressUpdate called")
-    }
+//    override fun onProgressUpdate(vararg values: Void?) {
+//        super.onProgressUpdate(*values)
+//        Log.d(TAG, "onProgressUpdate called")
+//    }
 
     override fun onPostExecute(result: String) {
         //super.onPostExecute(result)
-        Log.d(TAG, "onPostExecute called, parameter is $result")
-        listener?.onDownloadComplete(result, downloadStatus)
+        Log.d(TAG, "onPostExecute called")
+        listener.onDownloadComplete(result, downloadStatus)
     }
 
     override fun doInBackground(vararg params: String?): String {
@@ -46,7 +45,7 @@ class GetRawData (private val listener: OnDownloadComplete): AsyncTask<String, V
             downloadStatus = DownloadStatus.OK
             return URL(params[0]).readText()
         } catch (e : Exception) {
-            val errorMessage = when (e) {
+            return when (e) {
                 is MalformedURLException -> {
                     downloadStatus = DownloadStatus.NOT_INITIALISED
                     "doInBackGround: Invalid URL ${e.message}"
@@ -63,23 +62,10 @@ class GetRawData (private val listener: OnDownloadComplete): AsyncTask<String, V
                     downloadStatus = DownloadStatus.ERROR
                     "Unknown Error ${e.message}"
                 }
-
-
             }
-        return errorMessage
         }
 
     }
 
-//    override fun onCancelled(result: String?) {
-//        super.onCancelled(result)
-//    }
-//
-//    override fun onCancelled() {
-//        super.onCancelled()
-//    }
-//
-//    override fun onPreExecute() {
-//        super.onPreExecute()
-//    }
+
 }
