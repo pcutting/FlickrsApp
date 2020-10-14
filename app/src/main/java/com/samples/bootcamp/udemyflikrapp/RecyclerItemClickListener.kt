@@ -13,7 +13,7 @@ class RecyclerItemClickListener(
     recyclerView: RecyclerView,
     private val listener: OnRecyclerClickListener
 ) : RecyclerView.SimpleOnItemTouchListener() {
-    private val TAG = "RecyclerItemsClickListen"
+    private val TAG = "RecyclerItemClickListen"
 
     interface OnRecyclerClickListener {
         fun onItemClick(view: View, position: Int)
@@ -23,7 +23,7 @@ class RecyclerItemClickListener(
     private val gestureDetector =
         GestureDetectorCompat(context, object : GestureDetector.SimpleOnGestureListener() {
             override fun onSingleTapUp(e: MotionEvent): Boolean {
-                Log.d(TAG, ".onSingleTapUp : $e")
+                Log.d(TAG, ".onSingleTapUp start : $e")
                 val childView = recyclerView.findChildViewUnder(e.x, e.y)
                 Log.d(TAG, ".onSingleTapUp calling listener.onItemClick")
                 if (childView != null) {

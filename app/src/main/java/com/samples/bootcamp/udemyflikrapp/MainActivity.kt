@@ -26,6 +26,7 @@ class MainActivity : BaseActivity(),
     RecyclerItemClickListener.OnRecyclerClickListener{
 
     private val TAG = "MainActivity"
+
     private val flickrRecyclerViewAdapter = FlickrRecyclerViewAdapter(ArrayList())
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,7 +95,6 @@ class MainActivity : BaseActivity(),
             R.id.action_search -> {
                 startActivity(Intent(this, SearchActivity::class.java))
                 true
-
             }
             else -> super.onOptionsItemSelected(item)
         }
@@ -120,4 +120,8 @@ class MainActivity : BaseActivity(),
         Log.d(TAG, ".onError: exception ${exception.message}")
     }
 
+    override fun onResume() {
+        Log.d(TAG, ".onResume starts")
+        super.onResume()
+    }
 }
