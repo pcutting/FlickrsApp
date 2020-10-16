@@ -1,4 +1,4 @@
-package com.samples.bootcamp.FlickrApp
+package com.samples.bootcamp.flickrApp
 
 import android.os.Parcelable
 import android.util.Log
@@ -8,10 +8,12 @@ import java.io.IOException
 import java.io.ObjectStreamException
 
 @Parcelize
-class Photo(var title: String, var author: String, var authorId: String,
-            var link: String, var tags: String, var image: String ) : Parcelable {
+class Photo(
+    var title: String, var author: String, var authorId: String,
+    var link: String, var tags: String, var image: String
+) : Parcelable {
     companion object {
-        private  const val serialVersionUID = 1L
+        private const val serialVersionUID = 1L
     }
 
     override fun toString(): String {
@@ -25,7 +27,7 @@ class Photo(var title: String, var author: String, var authorId: String,
 
     @Throws(IOException::class)
     private fun writeObject(out: java.io.ObjectOutputStream) {
-        Log.d("Photo", "writeObject called" )
+        Log.d("Photo", "writeObject called")
         out.writeUTF(title)
         out.writeUTF(author)
         out.writeUTF(authorId)

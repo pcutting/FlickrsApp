@@ -1,4 +1,4 @@
-package com.samples.bootcamp.FlickrApp
+package com.samples.bootcamp.flickrApp
 
 import android.os.AsyncTask
 import android.util.Log
@@ -6,7 +6,8 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.lang.Exception
 
-class GetFlickrJsonData(private val listener: OnDataAvailable): AsyncTask<String, Void, ArrayList<Photo>>() {
+class GetFlickrJsonData(private val listener: OnDataAvailable) :
+    AsyncTask<String, Void, ArrayList<Photo>>() {
     private val TAG = "GetFlickrJsonData"
 
     interface OnDataAvailable {

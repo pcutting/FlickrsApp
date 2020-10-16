@@ -1,4 +1,4 @@
-package com.samples.bootcamp.FlickrApp
+package com.samples.bootcamp.flickrApp
 
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -14,15 +14,13 @@ class PhotoDetailsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_photo_details)
-        //setSupportActionBar(findViewById(R.id.toolbar))
+
         activateToolbar(true)
 
         val photo = intent.getParcelableExtra<Photo>(
             PHOTO_TRANSER
         ) as Photo
-            //intent.getSerializableExtra(PHOTO_TRANSER) as Photo
-//        photo_title.text = "Title:" + photo.title
-//        photo_tags.text = "Tags:" + photo.tags
+
         photo_title.text = resources.getString(R.string.photo_title_text, photo.title)
         photo_tags.text = resources.getString(R.string.photo_tags_text, photo.tags)
 

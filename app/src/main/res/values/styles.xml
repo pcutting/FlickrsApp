@@ -15,7 +15,7 @@
         <!-- new -->
         <item name="android:textColorSecondary">@color/secondary_text</item>
         <item name="android:icon">@color/icons</item>
-        <item name="android:background">@color/primary </item>
+        <item name="android:background">@color/primary</item>
         <item name="cardBackgroundColor">@color/primary</item>
     </style>
 

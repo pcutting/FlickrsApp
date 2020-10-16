@@ -1,4 +1,4 @@
-package com.samples.bootcamp.FlickrApp
+package com.samples.bootcamp.flickrApp
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
@@ -13,12 +13,13 @@ internal const val PHOTO_TRANSER = "PHOTO_TRANSFER"
 
 @SuppressLint("Registered")
 open class BaseActivity : AppCompatActivity() {
-    private val TAG  = "BaseActivity"
+    private val TAG = "BaseActivity"
 
     internal fun activateToolbar(enableHome: Boolean) {
         Log.d(TAG, ".activateToolBar")
 
-        var toolbar = findViewById<View>(R.id.toolbar) as Toolbar   // androidx.appcompat.widget.Toolbar
+        var toolbar =
+            findViewById<View>(R.id.toolbar) as Toolbar   // androidx.appcompat.widget.Toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(enableHome)
     }

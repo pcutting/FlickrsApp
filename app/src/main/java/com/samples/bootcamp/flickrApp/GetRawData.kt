@@ -1,4 +1,4 @@
-package com.samples.bootcamp.FlickrApp
+package com.samples.bootcamp.flickrApp
 
 import android.os.AsyncTask
 import android.util.Log
@@ -11,7 +11,7 @@ enum class DownloadStatus {
     OK, IDLE, NOT_INITIALISED, FAILED_OR_EMPTY, PERMISSIONS_ERROR, ERROR
 }
 
-class GetRawData(private val listener: OnDownloadComplete) : AsyncTask<String, Void, String>(){
+class GetRawData(private val listener: OnDownloadComplete) : AsyncTask<String, Void, String>() {
     private val TAG = "GetRawData"
     private var downloadStatus =
         DownloadStatus.IDLE
@@ -46,7 +46,7 @@ class GetRawData(private val listener: OnDownloadComplete) : AsyncTask<String, V
             Log.d(TAG, "doInBackground: in Try{} ")
             downloadStatus = DownloadStatus.OK
             return URL(params[0]).readText()
-        } catch (e : Exception) {
+        } catch (e: Exception) {
             return when (e) {
                 is MalformedURLException -> {
                     downloadStatus =

@@ -1,4 +1,5 @@
-package com.samples.bootcamp.FlickrApp
+package com.samples.bootcamp.flickrApp
+
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -38,7 +39,6 @@ class MainActivity : BaseActivity(),
         )
         recycler_view.adapter = flickrRecyclerViewAdapter
 
-
         Log.d(TAG, "onCreate ends")
     }
 
@@ -58,17 +58,18 @@ class MainActivity : BaseActivity(),
         }
     }
 
-    private fun createUri(baseURL: String, searchCriteria: String, lang: String, matchAll: Boolean): String {
+    private fun createUri(
+        baseURL: String,
+        searchCriteria: String,
+        lang: String,
+        matchAll: Boolean
+    ): String {
         Log.d(TAG, ".createUri starts")
 
-        return Uri.parse(baseURL).
-        buildUpon().
-        appendQueryParameter("tags", searchCriteria).
-        appendQueryParameter("tagmode", if (matchAll) "ALL" else "ANY").
-        appendQueryParameter("lang", lang).
-        appendQueryParameter("format", "json").
-        appendQueryParameter("nojsoncallback", "1").
-        build().toString()
+        return Uri.parse(baseURL).buildUpon().appendQueryParameter("tags", searchCriteria)
+            .appendQueryParameter("tagmode", if (matchAll) "ALL" else "ANY")
+            .appendQueryParameter("lang", lang).appendQueryParameter("format", "json")
+            .appendQueryParameter("nojsoncallback", "1").build().toString()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -91,10 +92,6 @@ class MainActivity : BaseActivity(),
             else -> super.onOptionsItemSelected(item)
         }
     }
-
-//    companion object {
-//        private const val TAG = "MainActivity"
-//    }
 
     override fun onDownloadComplete(data: String, status: DownloadStatus) {
         if (status == DownloadStatus.OK) {
@@ -124,15 +121,24 @@ class MainActivity : BaseActivity(),
         super.onResume()
 
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(applicationContext)
-        val queryResult = sharedPref.getString(FLICKR_QUERY, "" )
+        val queryResult = sharedPref.getString(FLICKR_QUERY, "")
 
         if (queryResult != null && queryResult.isNotEmpty()) {
-            val url = createUri("https://api.flickr.com/services/feeds/photos_public.gne", queryResult,"en-us", true)
+            val url = createUri(
+                "https://api.flickr.com/services/feeds/photos_public.gne",
+                queryResult,
+                "en-us",
+                true
+            )
             val getRawData = GetRawData(this)
             getRawData.execute(url)
         } else if (queryResult != null) {
             Log.d(TAG, "onResume: looking for default vacant case.")
-            val toast = Toast.makeText(applicationContext, "Perform a search for your favorite Flickr images", Toast.LENGTH_LONG).show()
+            val toast = Toast.makeText(
+                applicationContext,
+                "Perform a search for your favorite Flickr images",
+                Toast.LENGTH_LONG
+            ).show()
         }
 
         Log.d(TAG, ".onResume: ends")

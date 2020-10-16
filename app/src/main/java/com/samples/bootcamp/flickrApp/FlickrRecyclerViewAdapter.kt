@@ -1,4 +1,4 @@
-package com.samples.bootcamp.FlickrApp
+package com.samples.bootcamp.flickrApp
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,12 +16,13 @@ class FlickrImageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     var title: TextView = view.findViewById(R.id.title)
 }
 
-class FlickrRecyclerViewAdapter (private var photoList: List<Photo>)  : RecyclerView.Adapter<FlickrImageViewHolder>(){
+class FlickrRecyclerViewAdapter(private var photoList: List<Photo>) :
+    RecyclerView.Adapter<FlickrImageViewHolder>() {
     private val TAG = "FlickrRecyclerViewAdapt"
 
     override fun getItemCount(): Int {
         Log.d(TAG, ".getItemCount")
-        return if(photoList.isNotEmpty()) photoList.size else 0
+        return if (photoList.isNotEmpty()) photoList.size else 0
     }
 
     fun loadNewData(newPhotos: List<Photo>) {
