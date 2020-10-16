@@ -1,4 +1,4 @@
-package com.samples.bootcamp.udemyflikrapp
+package com.samples.bootcamp.FlickrApp
 
 import android.content.Context
 import android.util.Log

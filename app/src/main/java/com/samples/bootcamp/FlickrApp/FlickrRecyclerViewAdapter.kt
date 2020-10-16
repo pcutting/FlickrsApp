@@ -1,4 +1,4 @@
-package com.samples.bootcamp.udemyflikrapp
+package com.samples.bootcamp.FlickrApp
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.samples.bootcamp.udemyflikrapp.R
 import com.squareup.picasso.Picasso
 
 

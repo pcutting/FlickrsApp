@@ -1,4 +1,4 @@
-package com.samples.bootcamp.udemyflikrapp
+package com.samples.bootcamp.FlickrApp
 
 import android.os.AsyncTask
 import android.util.Log
@@ -13,7 +13,8 @@ enum class DownloadStatus {
 
 class GetRawData(private val listener: OnDownloadComplete) : AsyncTask<String, Void, String>(){
     private val TAG = "GetRawData"
-    private var downloadStatus = DownloadStatus.IDLE
+    private var downloadStatus =
+        DownloadStatus.IDLE
 
     interface OnDownloadComplete {
         fun onDownloadComplete(data: String, status: DownloadStatus)
@@ -37,7 +38,8 @@ class GetRawData(private val listener: OnDownloadComplete) : AsyncTask<String, V
     override fun doInBackground(vararg params: String?): String {
         Log.d(TAG, "doInBackground, params ${params[0]}")
         if (params[0] == null) {
-            downloadStatus = DownloadStatus.NOT_INITIALISED
+            downloadStatus =
+                DownloadStatus.NOT_INITIALISED
             return "No URL specified"
         }
         try {
@@ -47,19 +49,23 @@ class GetRawData(private val listener: OnDownloadComplete) : AsyncTask<String, V
         } catch (e : Exception) {
             return when (e) {
                 is MalformedURLException -> {
-                    downloadStatus = DownloadStatus.NOT_INITIALISED
+                    downloadStatus =
+                        DownloadStatus.NOT_INITIALISED
                     "doInBackGround: Invalid URL ${e.message}"
                 }
                 is IOException -> {
-                    downloadStatus = DownloadStatus.FAILED_OR_EMPTY
+                    downloadStatus =
+                        DownloadStatus.FAILED_OR_EMPTY
                     "doInBackGround: IO Exception reading data ${e.message}"
                 }
                 is SecurityException -> {
-                    downloadStatus = DownloadStatus.PERMISSIONS_ERROR
+                    downloadStatus =
+                        DownloadStatus.PERMISSIONS_ERROR
                     "doInBackGround: Secutity exception: Needs permission? ${e.message}"
                 }
                 else -> {
-                    downloadStatus = DownloadStatus.ERROR
+                    downloadStatus =
+                        DownloadStatus.ERROR
                     "Unknown Error ${e.message}"
                 }
             }

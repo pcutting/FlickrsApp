@@ -1,4 +1,4 @@
-package com.samples.bootcamp.udemyflikrapp
+package com.samples.bootcamp.FlickrApp
 
 import android.os.AsyncTask
 import android.util.Log
@@ -36,7 +36,14 @@ class GetFlickrJsonData(private val listener: OnDataAvailable): AsyncTask<String
                 val photoUrl = jsonMedia.getString("m")
                 val link = photoUrl.replaceFirst("_m.jpg", "_b.jpg")
 
-                val photoObject = Photo(title, author, authorId, link, tags, photoUrl)
+                val photoObject = Photo(
+                    title,
+                    author,
+                    authorId,
+                    link,
+                    tags,
+                    photoUrl
+                )
 
                 photoList.add(photoObject)
                 Log.d(TAG, ".doInBackground $photoObject")

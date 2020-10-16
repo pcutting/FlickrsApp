@@ -1,4 +1,4 @@
-package com.samples.bootcamp.udemyflikrapp
+package com.samples.bootcamp.FlickrApp
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.util.Log
 import android.view.View
+import com.samples.bootcamp.udemyflikrapp.R
 
 internal const val FLICKR_QUERY = "FLICKER_QUERY"
 internal const val PHOTO_TRANSER = "PHOTO_TRANSFER"
