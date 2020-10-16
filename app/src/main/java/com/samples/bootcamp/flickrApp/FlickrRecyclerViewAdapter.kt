@@ -22,7 +22,7 @@ class FlickrRecyclerViewAdapter(private var photoList: List<Photo>) :
 
     override fun getItemCount(): Int {
         Log.d(TAG, ".getItemCount")
-        return if (photoList.isNotEmpty()) photoList.size else 0
+        return if (photoList.isNotEmpty()) photoList.size else 1
     }
 
     fun loadNewData(newPhotos: List<Photo>) {
@@ -36,15 +36,23 @@ class FlickrRecyclerViewAdapter(private var photoList: List<Photo>) :
 
     override fun onBindViewHolder(holder: FlickrImageViewHolder, position: Int) {
         //Called by the layout manager when it wants new data in an existing view
-        val photoItem = photoList[position]
-        //Log.d(TAG, ".onBindViewHolder   ${photoItem.title} --> $position")
-        Picasso.with(holder.thumbnail.context).load(photoItem.image)
-            .error(R.drawable.image_holder_48)
-            .placeholder(R.drawable.image_holder_48)
-            .into(holder.thumbnail)
 
-        holder.title.text = photoItem.title
-        Log.d(TAG, "onBindViewHolder end $photoItem")
+        if (photoList.isEmpty()) {
+            holder.thumbnail.setImageResource(R.drawable.image_holder_48)
+            holder.title.setText(R.string.empty_photo_list_result)
+        } else {
+
+            val photoItem = photoList[position]
+            //Log.d(TAG, ".onBindViewHolder   ${photoItem.title} --> $position")
+            Picasso.with(holder.thumbnail.context).load(photoItem.image)
+                .error(R.drawable.image_holder_48)
+                .placeholder(R.drawable.image_holder_48)
+                .into(holder.thumbnail)
+
+            holder.title.text = photoItem.title
+            Log.d(TAG, "onBindViewHolder end $photoItem")
+        }
+
 
     }
 

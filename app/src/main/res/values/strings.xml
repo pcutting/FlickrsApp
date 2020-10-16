@@ -18,5 +18,6 @@
     <string name="action_search">search</string>
     <string name="searchable_hint">Enter photo tags</string>
 
+    <string name="empty_photo_list_result">No photos match your search.\n\n\Use the search icon to search for photos.</string>
 
 </resources>
